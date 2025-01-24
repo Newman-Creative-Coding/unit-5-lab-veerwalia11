@@ -32,14 +32,12 @@
         private static int vinNumber = 10000;
         private final String make = "Zoomster";
         private String model;
-        private String licensePlateNumber = "";
+        private String plateNumber;
         private static int totalCars = 0;
         private static int numOfSpeedsters = 0;
         private static int numOfRoadsters = 0;
         private static int numOfCubesters = 0;
         private static double totalProfits = 0;
-    
-        // Prices for each car model:
         private static final double speedsterPrice = 102000.00;
         private static final double roadsterPrice = 206000.00;
         private static final double cubesterPrice = 74000.00;
@@ -60,10 +58,11 @@
             numOfCubesters++;
             totalProfits += cubesterPrice;
         } else {
-            System.out.print("Invalid car model: " + carModel);
+            System.out.print("Car model " + carModel + " does not exist");
         }
         totalCars++;
         setVIN();
+        plateNumber = "";
     }
 
     private void setVIN() {
@@ -110,21 +109,21 @@
      * Postcondition: Modifies the license plate number of the Car object
      * @param plateNumber -the customer's String license plate number
      */
-    public void setPlateNumber(String plateNumber){
-        licensePlateNumber = plateNumber;
+    public void setPlateNumber(String pN){
+        plateNumber = pN;
     }   
     /**
      * Returns the total profits from cars produced by my factory.
      * @return totalProfits -the total sale price of all Car objects created
      */
-    public static double getTotalProfits(){
+    public double getTotalProfits(){
         return totalProfits;
     }
     /**
      * Returns the total number of cars produced by my factory.
      * @return totalCars -the total number of Car objects created
      */
-    public static int getTotalCars(){
+    public int getTotalCars(){
         return totalCars;
     }
     /**
@@ -132,7 +131,7 @@
      * @return totalSpeedsters -the total number of Car objects 
      * with model "Speedster" created
      */
-    public static int getTotalSpeedsters(){
+    public int getTotalSpeedsters(){
         return numOfSpeedsters;
     }
     /**
@@ -140,7 +139,7 @@
      * @return totalRoadsters -the total number of Car objects 
      * with model "Roadster" created
      */
-    public static int getTotalRoadsters(){
+    public int getTotalRoadsters(){
         return numOfRoadsters;
     }
     /**
@@ -148,7 +147,7 @@
      * @return totalCubeters -the total number of Car objects 
      * with model "Cubester" created
      */
-    public static int getTotalCubesters(){
+    public int getTotalCubesters(){
         return numOfCubesters;
     }
 
