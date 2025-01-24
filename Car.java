@@ -25,11 +25,55 @@
      * registered by a customer. Should be able to be modified by a 
      * method accessible to the customer.
      */
-public class Car {
-    // Variables:
-
-    // Constructor:
+    public class Car {
+        // Variables:
+        private String VIN;
+        private static char vinLetter = 'A';
+        private static int vinNumber = 10000;
+        private final String make = "Zoomster";
+        private String model;
+        private String licensePlateNumber = "";
+        private static int totalCars = 0;
+        private static int numOfSpeedsters = 0;
+        private static int numOfRoadsters = 0;
+        private static int numOfCubesters = 0;
+        private static double totalProfits = 0;
     
+        // Prices for each car model:
+        private static final double speedsterPrice = 102000.00;
+        private static final double roadsterPrice = 206000.00;
+        private static final double cubesterPrice = 74000.00;
+    
+    
+    // Constructor:
+    public Car(String carModel) {
+        if (carModel.equals("Roadster")) {
+            model = "Roadster";
+            numOfRoadsters++;
+            totalProfits += roadsterPrice;
+        } else if (carModel.equals("Speedster")) {
+            model = "Speedster";
+            numOfSpeedsters++;
+            totalProfits += speedsterPrice;
+        } else if (carModel.equals("Cubester")) {
+            model = "Cubester";
+            numOfCubesters++;
+            totalProfits += cubesterPrice;
+        } else {
+            System.out.print("Invalid car model: " + carModel);
+        }
+        totalCars++;
+        setVIN();
+    }
+
+    private void setVIN() {
+        if (vinNumber > 99999) {
+            vinLetter++;
+            vinNumber = 10000;
+        }
+        VIN = vinLetter + String.valueOf(vinNumber);
+        vinNumber++;
+    }
 
     // Methods:
     /**
@@ -39,19 +83,26 @@ public class Car {
      * @return VIN -the VIN of the Car object
      */
     public String getVIN(){
-
+        return VIN;
     }
+
     /**
-     * [your Javadocs here]
+     * Returns the String model of a given Car object.
+     * Precondition: Car obect must be initialized
+     * Postcondition: Returns String model accessed from the Car object
+     * @return model -the model of the Car object
      */
     public String getModel(){
-
+        return model;
     }
     /**
-     * [your Javadocs here]
+     * Returns the String make of a given Car object.
+     * Precondition: Car obect must be initialized
+     * Postcondition: Returns String make accessed from the Car object
+     * @return make -the make of the Car object
      */
     public String getMake(){
-
+        return make;
     }
     /**
      * Sets the String license plate number of a given Car object.
@@ -60,45 +111,45 @@ public class Car {
      * @param plateNumber -the customer's String license plate number
      */
     public void setPlateNumber(String plateNumber){
-
-    }
+        licensePlateNumber = plateNumber;
+    }   
     /**
      * Returns the total profits from cars produced by my factory.
      * @return totalProfits -the total sale price of all Car objects created
      */
-    public double getTotalProfits(){
-
+    public static double getTotalProfits(){
+        return totalProfits;
     }
     /**
      * Returns the total number of cars produced by my factory.
      * @return totalCars -the total number of Car objects created
      */
-    public int getTotalCars(){
-
+    public static int getTotalCars(){
+        return totalCars;
     }
     /**
      * Returns the  number of Speedster cars produced by my factory.
      * @return totalSpeedsters -the total number of Car objects 
      * with model "Speedster" created
      */
-    public int getTotalSpeedsters(){
-
+    public static int getTotalSpeedsters(){
+        return numOfSpeedsters;
     }
     /**
      * Returns the  number of Roadster cars produced by my factory.
      * @return totalRoadsters -the total number of Car objects 
      * with model "Roadster" created
      */
-    public int getTotalRoadsters(){
-
+    public static int getTotalRoadsters(){
+        return numOfRoadsters;
     }
     /**
      * Returns the  number of Cubester cars produced by my factory.
      * @return totalCubeters -the total number of Car objects 
      * with model "Cubester" created
      */
-    public int getTotalCubesters(){
-
+    public static int getTotalCubesters(){
+        return numOfCubesters;
     }
 
 }
